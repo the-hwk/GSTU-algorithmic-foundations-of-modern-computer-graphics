@@ -1,5 +1,6 @@
 import numpy as np
 
+# Матрица точек
 POINTS = np.array([
     [0, 0, 0],
     [1, 0, 0],
@@ -35,7 +36,7 @@ POINTS = np.array([
 ])
 
 # Матрица полигонов
-POLYGONS = np.array([
+POLYGONS = [
     [0, 1, 9, 8],
     [1, 2, 5, 4],
     [2, 3, 11, 10],
@@ -55,7 +56,7 @@ POLYGONS = np.array([
     [6, 7, 19, 18],
     [4, 6, 18, 16],
     [5, 7, 19, 17]
-])
+]
 
 def get_poly_points(polygon, points):
     poly_points = []
@@ -70,36 +71,5 @@ def calc_poly_order(points:list[float]) -> list[list[float]]:
         np.min(get_poly_points(polygon, points)[:, 2]),
         np.max(get_poly_points(polygon, points)[:, 2])
     ))
-
-    # сначала отсортировать от дальнего до ближайшего (по минимальной координате) (по убыванию)
-    # если минимальные координаты совпадают, то отсортировать по максимальной координате (по убыванию)
-
-    # собрать словарь из: значение - индексы
-
-    # poly_mins = {}
-    # for ind, poly in enumerate(POLYGONS):
-    #     val = np.min(get_poly_points(poly, points)[:, 2])
-    #     if val not in poly_mins:
-    #         poly_mins[val] = []
-    #     poly_mins[val].append(ind)
-
-    # s1 = sorted(poly_mins.items())
-
-    # s1 = sorted(POLYGONS, key=lambda polygon: (
-    #     np.min(get_poly_points(polygon, points)[:, 2])
-    # ))
-
-
-
-    # min_values = [np.min(get_poly_points(polygon, points)) for polygon in POLYGONS]
-    # u1 = np.unique(min_values)
-    # grouped_mins = [[]]
-
-    # grouped_rows = {k: [row for row, _ in g] for k, g in s2}
-
-    # for max_val, group in grouped_rows.items():
-    #     print(f"Группа с максимальным значением {max_val}:")
-    #     for row in group:
-    #         print(row)
 
     return sorted_polygons
